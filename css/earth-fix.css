@@ -1,7 +1,3 @@
-.earth-image {
-  display: none !important;
-}
-
 .hero {
   position: relative;
   isolation: isolate;
@@ -10,162 +6,179 @@
 
 .hero-copy {
   position: relative;
-  z-index: 5;
+  z-index: 3;
+}
+
+.hero h1 {
+  max-width: 760px;
 }
 
 .hero h1 span {
-  color: rgba(255, 250, 245, 0.34);
-  -webkit-text-stroke: 0;
-  text-stroke: 0;
-  font-weight: 600;
-  letter-spacing: -0.055em;
-  text-shadow: 0 0 22px rgba(255, 145, 71, 0.06);
+  display: block;
+  color: rgba(255, 250, 245, 0.42) !important;
+  -webkit-text-stroke: 0 !important;
+  text-stroke: 0 !important;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  text-shadow: none;
+  transform: none;
+  font-kerning: normal;
+  font-synthesis: none;
 }
 
-.earth-stage {
+.hero-project {
+  position: relative;
+  z-index: 2;
+  display: block;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 30px;
+  background: rgba(255,255,255,.03);
+  text-decoration: none;
+  box-shadow: 0 30px 90px rgba(0,0,0,.38);
+  transform: translateZ(0);
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .35s ease, box-shadow .35s ease;
+}
+
+.hero-project:hover {
+  transform: translateY(-10px) rotateX(1.5deg) rotateY(-1.5deg);
+  border-color: rgba(255,145,71,.55);
+  box-shadow: 0 38px 110px rgba(0,0,0,.48), 0 0 48px rgba(255,105,48,.16);
+}
+
+.hero-project-glow {
+  position: absolute;
+  z-index: 0;
+  width: 58%;
+  aspect-ratio: 1;
+  top: -24%;
+  right: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,198,139,.52), rgba(255,112,48,.18) 34%, transparent 68%);
+  filter: blur(30px);
+  animation: projectGlow 5s ease-in-out infinite alternate;
+}
+
+.hero-project-image {
   position: absolute;
   inset: 0;
-  min-height: 100%;
-  z-index: 1;
-  pointer-events: none;
   overflow: hidden;
 }
 
-.earth-media {
-  --earth-x: 0px;
-  --earth-y: 0px;
-  position: absolute;
-  top: 7%;
-  right: -7%;
-  width: min(72vw, 1120px);
-  height: 88%;
-  overflow: hidden;
-  opacity: 0.92;
-  transform: translate3d(var(--earth-x), var(--earth-y), 0);
-  animation: earthBackgroundDrift 14s ease-in-out infinite alternate;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.18) 10%,
-    #000 31%,
-    #000 88%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.18) 10%,
-    #000 31%,
-    #000 88%,
-    transparent 100%
-  );
-}
-
-.earth-media::before {
+.hero-project-image::after {
   content: "";
   position: absolute;
-  inset: -8%;
-  z-index: 2;
+  inset: 0;
   background:
-    linear-gradient(90deg, #05060b 0%, rgba(5, 6, 11, 0.78) 14%, transparent 42%),
-    linear-gradient(180deg, rgba(5, 6, 11, 0.55), transparent 28%, transparent 76%, rgba(5, 6, 11, 0.72));
+    linear-gradient(180deg, rgba(4,5,9,.04), rgba(4,5,9,.12) 44%, rgba(4,5,9,.94) 100%),
+    linear-gradient(90deg, rgba(4,5,9,.16), transparent 48%);
 }
 
-.earth-media::after {
-  content: "";
-  position: absolute;
-  width: 46%;
-  aspect-ratio: 1;
-  right: 2%;
-  top: -7%;
-  z-index: 3;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 210, 158, 0.42), rgba(255, 113, 47, 0.16) 30%, transparent 68%);
-  filter: blur(32px);
-  animation: earthGlowPulse 5s ease-in-out infinite alternate;
-}
-
-.earth-photo {
-  display: block;
+.hero-project-image img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  object-position: 63% center;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  filter: saturate(1.02) contrast(1.08) brightness(0.78);
-  transform: scale(1.14);
-  animation: earthSlowZoom 18s ease-in-out infinite alternate;
+  object-position: center;
+  filter: saturate(.92) contrast(1.06) brightness(.82);
+  transform: scale(1.04);
+  animation: projectImageMove 14s ease-in-out infinite alternate;
 }
 
-.earth-stage .orbit {
-  left: 73%;
-  top: 56%;
-  width: min(52vw, 760px);
-  z-index: 4;
-  opacity: 0.72;
-  pointer-events: none;
+.hero-project-content {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 34px;
 }
 
-.earth-stage .hud {
-  right: 4.5%;
-  bottom: 8%;
-  z-index: 6;
-  pointer-events: auto;
+.hero-project-index {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--orange);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
 
-@keyframes earthBackgroundDrift {
-  from { transform: translate3d(calc(var(--earth-x) - 10px), calc(var(--earth-y) - 5px), 0); }
-  to { transform: translate3d(calc(var(--earth-x) + 14px), calc(var(--earth-y) + 10px), 0); }
+.hero-project h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  letter-spacing: -.045em;
 }
 
-@keyframes earthSlowZoom {
-  from { transform: scale(1.12) translate3d(-0.6%, 0, 0); }
-  to { transform: scale(1.18) translate3d(0.8%, -0.7%, 0); }
+.hero-project p {
+  margin: 10px 0 0;
+  color: var(--muted);
 }
 
-@keyframes earthGlowPulse {
-  to { opacity: 0.72; transform: scale(1.08); }
+.hero-project-link {
+  flex: 0 0 auto;
+  padding: 13px 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  background: rgba(8,8,12,.52);
+  backdrop-filter: blur(14px);
+  font-size: .84rem;
+}
+
+@keyframes projectImageMove {
+  from { transform: scale(1.04) translate3d(-.6%, 0, 0); }
+  to { transform: scale(1.10) translate3d(.8%, -.8%, 0); }
+}
+
+@keyframes projectGlow {
+  to { opacity: .68; transform: scale(1.08); }
 }
 
 @media (max-width: 900px) {
   .hero {
-    padding-bottom: 520px;
+    grid-template-columns: 1fr;
   }
 
-  .earth-media {
-    top: auto;
-    right: -28%;
-    bottom: 0;
-    width: 138%;
-    height: 500px;
-    opacity: 0.88;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 90%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 90%, transparent 100%);
+  .hero h1 span {
+    letter-spacing: -0.02em;
   }
 
-  .earth-photo {
-    object-position: 66% center;
+  .hero-project {
+    min-height: 470px;
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: clamp(3rem, 16vw, 5.4rem);
+    letter-spacing: -0.045em;
   }
 
-  .earth-stage .orbit {
-    left: 62%;
-    top: auto;
-    bottom: 50px;
-    width: 118%;
+  .hero h1 span {
+    font-size: .72em;
+    letter-spacing: -0.015em;
   }
 
-  .earth-stage .hud {
-    right: 20px;
-    bottom: 38px;
+  .hero-project {
+    min-height: 390px;
+    border-radius: 22px;
+  }
+
+  .hero-project-content {
+    padding: 22px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .earth-media,
-  .earth-photo,
-  .earth-media::after {
+  .hero-project-image img,
+  .hero-project-glow {
     animation: none !important;
   }
 }
