@@ -120,3 +120,31 @@ if (canvas) {
   resizeCanvas();
   drawStars();
 }
+
+if (document.querySelector('.case-image, .gallery img')) {
+  const lightboxStyles = document.createElement('link');
+  lightboxStyles.rel = 'stylesheet';
+  lightboxStyles.href = 'css/lightbox.css';
+  document.head.appendChild(lightboxStyles);
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'image-lightbox';
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightbox.innerHTML = `
+    <div class="lightbox-stage">
+      <img class="lightbox-image" alt="">
+    </div>
+    <div class="lightbox-controls" aria-label="Image controls">
+      <button class="lightbox-button" type="button" data-lightbox-zoom-out aria-label="Zoom out">−</button>
+      <button class="lightbox-button" type="button" data-lightbox-reset aria-label="Reset zoom">1:1</button>
+      <button class="lightbox-button" type="button" data-lightbox-zoom-in aria-label="Zoom in">+</button>
+      <button class="lightbox-button" type="button" data-lightbox-close aria-label="Close image">×</button>
+    </div>
+    <div class="lightbox-caption" aria-live="polite"></div>
+  `;
+  document.body.appendChild(lightbox);
+
+  const lightboxScript = document.createElement('script');
+  lightboxScript.src = 'js/lightbox.js';
+  document.body.appendChild(lightboxScript);
+}
