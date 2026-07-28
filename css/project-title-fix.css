@@ -1,0 +1,44 @@
+.case-hero h1 {
+  max-width: 980px;
+  margin: 18px 0 22px;
+  font-size: clamp(4rem, 9vw, 8.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.case-hero h1 span {
+  display: block;
+  color: rgba(255, 250, 245, 0.18) !important;
+  -webkit-text-stroke: 0 !important;
+  text-stroke: 0 !important;
+  font-weight: 600;
+  letter-spacing: -0.032em;
+  line-height: 0.9;
+  text-shadow: none;
+  font-kerning: normal;
+  font-synthesis: none;
+  transform: none;
+}
+
+.case-hero .facts {
+  margin-top: 22px;
+}
+
+@media (max-width: 900px) {
+  .case-hero h1 {
+    font-size: clamp(3.5rem, 13vw, 7rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .case-hero h1 {
+    font-size: clamp(3rem, 17vw, 5.4rem);
+    letter-spacing: -0.04em;
+  }
+
+  .case-hero h1 span {
+    font-size: 0.78em;
+    letter-spacing: -0.018em;
+  }
+}
