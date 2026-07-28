@@ -1,6 +1,7 @@
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu');
 const navigation = document.querySelector('.nav');
+const earthMedia = document.querySelector('.earth-media');
 
 function closeMenu() {
   navigation?.classList.remove('open');
@@ -9,6 +10,11 @@ function closeMenu() {
 
 window.addEventListener('scroll', () => {
   header?.classList.toggle('scrolled', window.scrollY > 20);
+
+  if (earthMedia && window.innerWidth > 900) {
+    const scrollOffset = Math.min(window.scrollY * 0.055, 28);
+    earthMedia.style.setProperty('--earth-y', `${scrollOffset}px`);
+  }
 });
 
 menuButton?.addEventListener('click', () => {
@@ -23,6 +29,21 @@ document.querySelectorAll('.nav a').forEach((link) => {
 window.addEventListener('resize', () => {
   if (window.innerWidth > 900) closeMenu();
 });
+
+if (earthMedia && window.matchMedia('(pointer: fine)').matches) {
+  window.addEventListener('pointermove', (event) => {
+    const normalizedX = event.clientX / window.innerWidth - 0.5;
+    const normalizedY = event.clientY / window.innerHeight - 0.5;
+
+    earthMedia.style.setProperty('--earth-x', `${normalizedX * 18}px`);
+    earthMedia.style.setProperty('--earth-y', `${normalizedY * 12}px`);
+  });
+
+  document.documentElement.addEventListener('mouseleave', () => {
+    earthMedia.style.setProperty('--earth-x', '0px');
+    earthMedia.style.setProperty('--earth-y', '0px');
+  });
+}
 
 const observer = new IntersectionObserver(
   (entries) => {
